@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Student Registration Form</title>
+
+		<!-- Styling -->
+		<link rel="stylesheet" href="style.css" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+			rel="stylesheet"
+		/>
+		<!-- Styling END-->
+	</head>
+	<body>
+		<div align="center">
+			<h1>STUDENT REGISTRATION</h1>
+		</div>
+
+		<!-- Forms built using tables -->
+		<table class="form-table" align="center" cellpadding="10">
+			<!-- First Name -->
+			<tr>
+				<td>First Name:</td>
+				<td>
+					<input
+						type="text"
+						name="first_name"
+						maxlength="50"
+						placeholder="Steven"
+					/><label for="first_name">(Max 50 Characters Allowed)</label>
+				</td>
+			</tr>
+
+			<!-- Last Name -->
+			<tr>
+				<td>Last Name:</td>
+				<td>
+					<input
+						type="text"
+						name="last_name"
+						maxlength="50"
+						placeholder="Hang"
+					/><label for="last_name">(Max 50 Characters Allowed)</label>
+				</td>
+			</tr>
+
+			<!-- Email ID -->
+			<tr>
+				<td>Email ID:</td>
+				<td>
+					<input
+						type="email"
+						name="email_id"
+						maxlength="100"
+						placeholder="example@email.com"
+					/>
+				</td>
+			</tr>
+
+			<!-- Mobile Number -->
+			<tr>
+				<td>Mobile Number:</td>
+				<td>
+					<input
+						type="text"
+						name="mobile_number"
+						maxlength="10"
+						placeholder="09-xxxxxxxxx"
+					/><label for="mobile_number">(10 Digits Allowed)</label>
+				</td>
+			</tr>
+
+			<!-- Gender -->
+			<tr>
+				<td>Gender:</td>
+				<td>
+					<input type="radio" name="gender" value="Male" />Male
+					<input type="radio" name="gender" value="Female" />Female
+				</td>
+			</tr>
+
+			<!-- Date of Birth -->
+			<tr>
+				<td>Date of Birth:</td>
+				<td>
+					<!-- Day values (JavaScript) -->
+					<select name="birth_day" id="birth_day">
+						<option value="">Select Day</option>
+						<script>
+							for (let i = 1; i <= 31; i++) {
+								document.write(`<option value="${i}">${i}</option>`);
+							}
+						</script>
+					</select>
+
+					<!-- Month values (JavaScript) -->
+					<select name="birth_month" id="birth_month">
+						<option value="">Select Month</option>
+						<script>
+							for (let i = 1; i <= 12; i++) {
+								document.write(`<option value="${i}">${i}</option>`);
+							}
+						</script>
+					</select>
+
+					<!-- Year values (JavaScript) -->
+					<select name="birth_year" id="birth_year">
+						<option value="">Select Year</option>
+						<script>
+							for (let i = 1950; i <= new Date().getFullYear(); i++) {
+								document.write(`<option value="${i}">${i}</option>`);
+							}
+						</script>
+					</select>
+				</td>
+			</tr>
+
+			<!-- Address -->
+			<tr>
+				<td>Address:</td>
+				<td>
+					<textarea
+						name="address"
+						rows="10"
+						cols="50"
+						placeholder="e.g., Property No.(xx), street..."
+					></textarea>
+				</td>
+			</tr>
+
+			<!-- City -->
+			<tr>
+				<td>City:</td>
+				<td>
+					<input
+						type="text"
+						name="city"
+						maxlength="50"
+						placeholder="Yangon"
+					/><label for="city">(Max 50 Characters Allowed)</label>
+				</td>
+			</tr>
+
+			<!-- State -->
+			<tr>
+				<td>State:</td>
+				<td>
+					<input
+						type="text"
+						name="state"
+						maxlength="50"
+						placeholder="Shan, Kachin, or ..."
+					/><label for="state">(Max 50 Characters Allowed)</label>
+				</td>
+			</tr>
+
+			<!-- Country -->
+			<tr>
+				<td>Country:</td>
+				<td><input type="text" name="country" placeholder="Myanmar" /></td>
+			</tr>
+
+			<!-- Hobbies -->
+			<tr>
+				<td>Hobbies:</td>
+				<td>
+					<input type="checkbox" name="hobby_chess" value="Chess" />
+					Chess<br />
+					<input
+						type="checkbox"
+						name="hobby_making_music"
+						value="making_music"
+					/>
+					Making Music <br />
+					<input type="checkbox" name="hobby_cubing" value="Cubing" />
+					Cubing<br />
+					<input type="checkbox" name="hobby_cooking" value="Cooking" />
+					Cooking<br />
+
+					<input type="checkbox" name="hotty_other" value="Cther" />
+					Others<br />
+					<input
+						type="text"
+						name="other_hobby"
+						maxlength="50"
+						placeholder="e.g., Blogging"
+					/><label for="other_hobby">(Max 50 Characters Allowed)</label>
+				</td>
+			</tr>
+
+			<!-- Qualification -->
+			<tr>
+				<td>Qualification:</td>
+				<td>
+					<br />
+					<input type="checkbox" name="high_school" value="High School" />
+					High School (10th)<br />
+					<input type="checkbox" name="higher_school" value="Higher School" />
+					Higher School (12th)<br />
+					<input type="checkbox" name="graduation" value="Graduation" />
+					Graduation (Bachelors)<br />
+					<input
+						type="checkbox"
+						name="post_graduation"
+						value="Post Graduation"
+					/>
+					Post Graduation (Masters)<br />
+					<input type="checkbox" name="phd" value="Phd" />
+					Phd
+				</td>
+			</tr>
+
+			<!-- Courses -->
+			<tr>
+				<td>Applied For:</td>
+				<td>
+					<input type="radio" name="course" value="BCA" />
+					BCA(Bachelor of Computer Applications)<br />
+					<input type="radio" name="course" value="B.Com" />
+					B.Com(Bachelor of Commerce)<br />
+					<input type="radio" name="course" value="B.Sc" />
+					B.Sc(Bachelor of Science)<br />
+					<input type="radio" name="course" value="B.A" />
+					BA(Bachelor of Arts)<br />
+					<input type="radio" name="course" value="BCA" />
+					MCA(Master of Computer Applications)<br />
+					<input type="radio" name="course" value="B.Com" />
+					M.Com(Master of Commerce)<br />
+					<input type="radio" name="course" value="B.Sc" />
+					M.Sc(Master of Science)<br />
+					<input type="radio" name="course" value="B.A" />
+					MA(Master of Arts)<br />
+				</td>
+			</tr>
+
+			<!-- Submit and Reset -->
+			<tr>
+				<td colspan="2" align="center">
+					<input type="reset" value="Reset" />
+					<input type="submit" value="Submit" />
+				</td>
+			</tr>
+		</table>
+	</body>
+</html>
