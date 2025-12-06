@@ -1,6 +1,7 @@
 /*    Style Base    */
 * {
   font-family: "Inter";
+  font-size: 16px;
 }
 
 h1 {
@@ -21,7 +22,7 @@ table {
 }
 
 textarea {
-  font-size: 14px;
+  font-size: 16px;
   padding: 10px;
 }
 
