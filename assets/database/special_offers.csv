@@ -1,4 +1,0 @@
-id,title,price,type,description,benefits,image,hottest
-offer_basic,Monthly Coffee Plan,$25,subscription,Fresh coffee delivered monthly,"2 bags / month;Free delivery;Cancel anytime",assets/images/special_offers/sub_basic.png,no
-offer_pro,Barista Pro Plan,$45,subscription,For serious coffee lovers,"4 bags / month;Exclusive roasts;Priority support",assets/images/special_offers/sub_pro.png,yes
-offer_bundle,Home Brewing Bundle,$79,promotion,Limited-time brewing starter kit,"Pour-over dripper;Filters;Premium beans",assets/images/special_offers/bundle.png,no
