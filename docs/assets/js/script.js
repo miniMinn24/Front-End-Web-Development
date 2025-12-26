@@ -440,7 +440,7 @@ document.addEventListener("click", (e) => {
 	const btn = e.target.closest(".btn-offer");
 	if (!btn) return;
 
-	const box = btn.closest(".offers-box");
+	const box = btn.closest(".special-offers-box");
 	if (!box) return;
 
 	currentPurchaseItem = {

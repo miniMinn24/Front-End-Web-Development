@@ -1,24 +1,30 @@
-loadCSV("assets/database/special_offers.csv", (row, index) => {
-	const container = document.getElementById("offersContainer");
-	if (!container) return;
+const specialOffersContainer = document.getElementById(
+	"specialOffersContainer"
+);
 
-	// Parse CSV row
-	const [id, title, price, type, description, benefits, image, hottest] =
-		row.split(",");
+if (!specialOffersContainer) {
+	specialOffersContainer.innerHTML = "";
+}
+
+loadCSV("assets/database/special_offers.csv", (row, index) => {
+	const [
+		id,
+		title,
+		price,
+		payment_modal,
+		type,
+		description,
+		benefits,
+		image,
+		hottest,
+		discount,
+	] = row.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
 
 	const box = document.createElement("div");
-	box.className = "box product offers-box";
-	if (index >= 3) box.classList.add("offers-hide");
-
-	box.dataset.title = title;
-	box.dataset.price = price;
-	box.dataset.description = description;
-	box.dataset.img = image;
-	box.dataset.type = type;
-	box.dataset.benefits = benefits;
-	box.dataset.search = `${title} ${type} ${description}`.toLowerCase();
-
-	box.dataset.hottest = hottest;
+	box.className =
+		index >= 3
+			? "special-offers-box special-offers-hide"
+			: "special-offers-box";
 
 	const badge =
 		type === "subscription"
@@ -30,45 +36,68 @@ loadCSV("assets/database/special_offers.csv", (row, index) => {
 		.map((b) => `<li>${b.trim()}</li>`)
 		.join("");
 
-	if (box.dataset.hottest == "yes") {
-		box.classList.add("offers-hottest");
+	if (discount > 0) {
+		const current_price = price.replace(/[$,]/g, "");
+		const discount_price =
+			"$" +
+			(current_price - ((100 * discount) / 100) * current_price).toFixed(2);
 
 		box.innerHTML = `
-		${badge}
-		<img src="${image}" alt="${title}" class="product-img">
+	${badge}
+		<div class="offer-image">
+			<img src="${image}" alt="${title}">
+		</div>
 
 		<h3>${title}</h3>
-		<div class="price">${price}</div>
+		<p class="offer-description">${description}</p>
 
-		<p class="description">${description}</p>
+		<div class="offer-discount-percent">Save <span>${discount * 100}%</span></div>
+		<div class="offer-price-warpper">
+			<div class="offer-discount-price">${price}</div>
+			<div class="offer-price">${discount_price}<span>${payment_modal}</span></div>
+		</div>
+
+				<button class="btn-offer">
+			${type === "subscription" ? "Subscribe" : "View Deal"}
+		</button>
+
 
 		<ul class="offer-benefits">
 			${benefitsList}
 		</ul>
-
-		<button class="btn-offer">
-			${type === "subscription" ? "Subscribe" : "View Deal"}
-		</button>
 	`;
+		box.dataset.price = discount_price;
 	} else {
 		box.innerHTML = `
-		${badge}
-		<img src="${image}" alt="${title}" class="product-img">
+	${badge}
+		<div class="offer-image">
+			<img src="${image}" alt="${title}">
+		</div>
 
 		<h3>${title}</h3>
-		<div class="price">${price}</div>
+				<p class="offer-description">${description}</p>
 
-		<p class="description">${description}</p>
+		<div class="offer-price">${price}<span>${payment_modal}</span></div>
+
+				<button class="btn-offer">
+			${type === "subscription" ? "Subscribe" : "View Deal"}
+		</button>
+
 
 		<ul class="offer-benefits">
 			${benefitsList}
 		</ul>
-
-		<button class="btn-offer">
-			${type === "subscription" ? "Subscribe" : "View Deal"}
-		</button>
 	`;
+
+		box.dataset.price = price;
 	}
 
-	container.appendChild(box);
+	if (hottest == "yes") {
+		box.classList.add("offer-hottest");
+	}
+
+	box.dataset.title = title;
+	box.dataset.type = type;
+
+	specialOffersContainer.appendChild(box);
 });
