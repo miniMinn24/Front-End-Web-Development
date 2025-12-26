@@ -1,3 +1,19 @@
-.test {
+.test3 {
   background-color: blue;
+}
+
+#test {
+  background-color: aqua;
+}
+
+div {
+  background-color: blue;
+}
+
+div p {
+  background-color: pink;
+}
+
+p {
+  background-color: yellowgreen;
 }

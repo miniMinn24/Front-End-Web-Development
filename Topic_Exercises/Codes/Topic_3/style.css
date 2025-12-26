@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Klee+One&family=Mali:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&family=Pacifico&display=swap');
+
+* {
+  font-family: "Mali", cursive;
+}
+
+body {
+  background: radial-gradient(circle at top, #2b2b2b, #0e0e0e);
+  color: #ffffff;
+}
+
+#navigation {
+  float: left;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  background: #493b30;
+}
+
+
+#navigation ul {
+  margin: 0;
+  padding: 0;
+}
+
+#navigation ul li {
+  list-style-type: none;
+  display: inline-block;
+}
+
+#navigation li a {
+  display: block;
+  float: left;
+  padding: 5px 10px;
+  color: #ffffff;
+  text-decoration: none;
+}
+
+#navigation li a:hover {
+  transform: scale(1.05);
+}
+
+#content {
+  clear: left;
+  padding: 20px;
+}
+
+#content h2 {
+  font-size: 160%;
+  margin: 0 0 10px;
+}
+
+#header {
+  background: #1a1a1a;
+  color: #ffd0a0;
+  padding: 20px;
+}
+
+#header h1 {
+  font-family: "Pacifico", cursive;
+  margin: 0;
+}
+
+#footer {
+  color: #ffffff;
+  background: #171717;
+  text-align: right;
+  padding: 20px;
+  height: 1%;
+}

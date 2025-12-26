@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<link rel="stylesheet" href="style.css" />
+	</head>
+	<body>
+		<div class="grid-container">
+			<header>header</header>
+			<article>article</article>
+			<aside>aside</aside>
+			<footer>footer</footer>
+
+			<script type="text/javascript">
+				var grade = "A";
+				document.write("Entering switch block <br />");
+				switch (grade) {
+					case "A":
+						document.write("Good job <br />");
+						break;
+					case "B":
+						document.write("Pretty good <br />");
+						break;
+					case "C":
+						document.write("Passed <br />");
+						break;
+					case "D":
+						document.write("Not so good <br />");
+						break;
+					case "F":
+						document.write("Failed <br />");
+						break;
+					default:
+						document.write("Unknown grade <br />");
+				}
+				document.write("Exiting switch block");
+			</script>
+		</div>
+	</body>
+</html>

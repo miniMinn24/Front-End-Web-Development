@@ -1,0 +1,528 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+		<title>Bean Boutique Coffee Shop</title>
+
+		<!-- CSS -->
+		<link rel="stylesheet" href="assets/themes/light.css" />
+		<link rel="stylesheet" href="assets/themes/dark.css" />
+		<link rel="stylesheet" href="style.css" />
+		<!-- Font Awesome -->
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+		/>
+		<!-- Site Icon -->
+		<link rel="icon" type="image/x-icon" href="assets/images/favicon.ico" />
+	</head>
+
+	<body>
+		<!-- HEADER SECTION -->
+		<header class="header">
+			<a href="#" class="logo">
+				<img
+					src="assets/images/bean_boutique_light_transparent.svg"
+					class="img-logo"
+					alt="Bean Boutique Logo"
+					id="site-logo"
+				/>
+			</a>
+
+			<!-- PageMENU FOR SMALLER DEVICES -->
+			<nav class="navbar navbar-expand">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item">
+						<a
+							href="#about"
+							class="text-decoration-none tooltip"
+							data-tooltip="Read about us"
+							>About</a
+						>
+					</li>
+					<li class="nav-item">
+						<a
+							href="#menu"
+							class="text-decoration-none tooltip"
+							data-tooltip="Explore coffee"
+							>Coffee</a
+						>
+					</li>
+					<li class="nav-item">
+						<a
+							href="#equipment"
+							class="text-decoration-none tooltip"
+							data-tooltip="Explore brewing equipments"
+							>Equipments</a
+						>
+					</li>
+					<li class="nav-item">
+						<a
+							href="#events"
+							class="text-decoration-none tooltip"
+							data-tooltip="Our Events and workshops"
+							>Workshops</a
+						>
+					</li>
+					<li class="nav-item">
+						<a
+							href="#offers"
+							class="text-decoration-none tooltip"
+							data-tooltip="Checkout special offers"
+							>Offers</a
+						>
+					</li>
+				</ul>
+			</nav>
+			<div class="icons">
+				<div
+					class="fas tooltip"
+					data-tooltip="Toggle light/dark theme"
+					aria-label="Toggle theme"
+				>
+					<i id="theme-toggle" class="fa-solid fa-moon"></i>
+				</div>
+				<div
+					class="fas fa-search tooltip"
+					id="search-btn"
+					data-tooltip="Search"
+				></div>
+				<div
+					class="fas fa-shopping-cart tooltip"
+					data-tooltip="View cart"
+					id="cart-btn"
+					onclick="redirectCart()"
+					title="View your cart"
+				></div>
+				<div
+					class="fas fa-bars tooltip"
+					data-tooltip="Page menu"
+					id="menu-btn"
+				></div>
+			</div>
+
+			<!-- SEARCH TEXT BOX -->
+			<div class="search-form">
+				<input
+					type="search"
+					id="search-box"
+					class="form-control"
+					placeholder="e.g., Coffee, brewing equipments, ..."
+				/>
+				<div id="searchSuggestions" class="search-suggestions"></div>
+			</div>
+
+			<!-- CART SECTION -->
+			<div class="cart">
+				<h2 class="cart-title">Your Cart:</h2>
+				<div class="cart-content"></div>
+				<div class="total">
+					<div class="total-title">Total:</div>
+					<div class="total-price">$0</div>
+				</div>
+				<!-- BUY BUTTON -->
+				<div class="box-line"></div>
+
+				<button type="button" class="btn-buy">
+					<i class="fa-solid fa-money-check-dollar"></i> Checkout Now
+				</button>
+			</div>
+		</header>
+
+		<!-- Product Modal Reuseable -->
+		<div id="productModal" class="modal">
+			<div class="modal-content">
+				<span class="modal-close"><i class="fa-solid fa-xmark"></i></span>
+
+				<div class="modal-layout">
+					<img id="modalImg" alt="" />
+
+					<div class="modal-details">
+						<h2 id="modalTitle"></h2>
+						<div id="modalPrice" class="price"></div>
+
+						<p id="modalDescription"></p>
+
+						<!-- Coffee-only -->
+						<p id="modalNotes" class="notes"></p>
+						<p id="modalBrew" class="brew"></p>
+
+						<!-- Equipment-only -->
+						<p id="modalUsage" class="usage"></p>
+
+						<button class="add-cart modal-add">+ Add</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Modal for Events Registration-->
+		<div class="modal" id="eventModal">
+			<div class="modal-content registration-modal">
+				<span class="modal-close" id="closeEventModal"
+					><i class="fa-solid fa-xmark"></i
+				></span>
+
+				<form id="eventRegisterForm">
+					<h3 class="event-title">Event Registration</h3>
+
+					<input type="text" id="firstName" placeholder="First Name" required />
+					<input type="text" id="lastName" placeholder="Last Name" required />
+					<input type="email" id="email" placeholder="Email Address" required />
+
+					<div class="box-line"></div>
+
+					<button type="submit" class="btn-submit">Register</button>
+				</form>
+				<div class="success-message" id="eventSuccess">
+					<i class="fa-solid fa-circle-check"></i>
+					<h2>You’re signed up!</h2>
+					<p>Let's prepare for yourself for the upcoming event and workshop.</p>
+				</div>
+			</div>
+		</div>
+
+		<!-- Order Success (Modal)-->
+		<div class="modal" id="orderSuccess">
+			<div class="modal-content order-success">
+				<i class="fa-solid fa-truck"></i>
+				<h2>Your order is placed!</h2>
+				<p>Sit back and relax — our delivery partner will arrive very soon.</p>
+				<button class="btn-close-success">Continue Shopping</button>
+			</div>
+		</div>
+
+		<!-- PAYMENT MODAL -->
+		<div class="modal" id="paymentModal">
+			<div class="modal-content">
+				<span class="modal-close" id="closePaymentModal">
+					<i class="fa-solid fa-xmark"></i>
+				</span>
+
+				<h2 id="paymentTitle">Complete Purchase</h2>
+				<p id="paymentPrice" class="paymentPrice"></p>
+
+				<form id="paymentForm">
+					<input type="text" placeholder="Cardholder Name" required />
+					<input
+						type="text"
+						placeholder="Card Number"
+						maxlength="19"
+						required
+					/>
+					<div class="credit-details">
+						<input type="text" placeholder="MM/YY" required />
+						<input type="text" placeholder="CVV" maxlength="4" required />
+					</div>
+
+					<div class="box-line"></div>
+
+					<button type="submit" class="btn-submit">Pay Now</button>
+				</form>
+			</div>
+		</div>
+
+		<!-- Purchase Success Modal -->
+		<div class="modal" id="purchaseSuccess">
+			<div class="modal-content order-success">
+				<i class="fa-solid fa-circle-check"></i>
+				<h2>Purchase Successful!</h2>
+				<p>Your subscription / deal is now active.</p>
+				<button class="btn-close-success" id="closePurchaseSuccess">
+					Continue
+				</button>
+			</div>
+		</div>
+
+		<!-- HOME SECTION -->
+		<section class="home" id="home">
+			<video class="home-video" autoplay muted loop playsinline>
+				<source src="assets/images/background.webm" type="video/mp4" />
+				Your browser does not support the video tag.
+			</video>
+			<div class="content">
+				<h3>Welcome to</h3>
+				<h2>Bean Boutique.</h2>
+				<p>For those who believe every cup tells a story ~</p>
+				<a
+					href="#menu"
+					class="btn-home tooltip"
+					data-tooltip="Navigate to our latest products"
+					>Order Avaliable <i class="fa fa-angle-right"></i>
+				</a>
+			</div>
+		</section>
+
+		<!-- ABOUT US SECTION -->
+		<section class="about" id="about">
+			<h1 class="heading"><span>About</span> Us</h1>
+			<div class="row g-0">
+				<div class="image">
+					<img src="assets/images/coffee_beans.jpg" alt="" class="img-fluid" />
+				</div>
+				<div class="content">
+					<h3>Welcome To Bean Boutique Coffee Shop!</h3>
+					<i>
+						<p>
+							"At our coffee shop, coffee is more than a daily routine—it is a
+							craft we take pride in. We offer a comfortable and welcoming space
+							in the heart of the city, where quality, consistency, and care
+							come together in every cup. Our journey is driven by a dedication
+							to sourcing premium coffee beans and preparing them with precision
+							to bring out their best flavors."
+						</p>
+						<p>
+							"Coffee, to us, is about connection and experience. Our warm and
+							inviting environment is designed for people to slow down, enjoy
+							meaningful moments, and share great conversations. Whether you are
+							here to work, relax, or catch up with friends, we aim to make
+							every visit memorable."
+						</p>
+					</i>
+					<p>By CEO of Bean Boutique</p>
+					<a href="#events" class="btn-home">Learn More</a>
+				</div>
+			</div>
+		</section>
+
+		<!-- Search "No Result" -->
+		<div id="noResults" class="no-results">
+			<i class="fa-solid fa-magnifying-glass"></i>
+			<h2>No products found.</h2>
+			<p>Sorry, we couldn't find what you're looking for...</p>
+		</div>
+
+		<div class="solid-line"></div>
+
+		<!-- MENU SECTION -->
+		<section class="menu" id="menu">
+			<h1 class="heading">Coffee <span>Menu</span></h1>
+			<h3 class="section-description">
+				Tasty and qualified coffee products for your likings and experience
+			</h3>
+
+			<div class="box-container" id="coffeeContainer"></div>
+
+			<div class="menu-actions">
+				<div class="showHideWarpper">
+					<button id="showHideBtn" class="btn-showhide" data-target="coffee">
+						Show More >
+					</button>
+				</div>
+			</div>
+		</section>
+
+		<!-- BREWING EQUIPMENT SECTION -->
+		<section class="menu" id="equipment">
+			<h1 class="heading">Brewing <span>Equipment</span></h1>
+			<h3 class="section-description">
+				Get our handy equipments and make coffee with them
+			</h3>
+
+			<div class="box-container" id="equipmentContainer">
+				<!-- Equipment cards injected here -->
+			</div>
+
+			<div class="menu-actions">
+				<div class="showHideWarpper">
+					<button
+						id="equipmentShowBtn"
+						class="btn-showhide"
+						data-target="equipment"
+					>
+						Show More >
+					</button>
+				</div>
+			</div>
+		</section>
+
+		<div class="solid-line"></div>
+
+		<section class="events" id="events">
+			<h1 class="heading">Events & <span>Workshops</span></h1>
+			<h3 class="section-description">
+				We are motivated to guide and share our latest guides.
+			</h3>
+
+			<div class="events-container" id="eventsContainer"></div>
+
+			<div class="menu-actions">
+				<div class="showHideWarpper">
+					<button id="eventsShowBtn" class="btn-showhide" data-target="events">
+						Show More >
+					</button>
+				</div>
+			</div>
+		</section>
+
+		<section class="blogs" id="blogs">
+			<h1 class="heading">Community <span>Blogs</span></h1>
+			<h3 class="section-description">
+				Our community engagement on social medias
+			</h3>
+
+			<div class="box-container blog-container">
+				<article class="blog-card">
+					<img src="assets/images/blog1.webp" alt="Batch Brew vs Pour Over" />
+					<div class="blog-content">
+						<h3>Batch Brew vs Pour Over</h3>
+						<p>
+							A practical comparison of two popular brewing techniques used by
+							professionals.
+						</p>
+						<a
+							href="https://www.thewaytocoffee.com/batch-brew-vs-pour-over/"
+							target="_blank"
+							class="blog-link"
+						>
+							Read Article →
+						</a>
+					</div>
+				</article>
+
+				<article class="blog-card">
+					<img src="assets/images/blog2.webp" alt="Coffee Roasting Basics" />
+					<div class="blog-content">
+						<h3>Understanding Coffee Roasting</h3>
+						<p>Learn how roasting levels influence flavor, aroma, and body.</p>
+						<a href="https://medium.com" target="_blank" class="blog-link">
+							Read Article →
+						</a>
+					</div>
+				</article>
+
+				<article class="blog-card">
+					<img
+						src="assets/images/blog3.webp"
+						alt="How to Store Coffee Beans Properly"
+					/>
+					<div class="blog-content">
+						<h3>How to Store Coffee Beans Properly</h3>
+						<p>
+							Discover best practices for keeping your coffee beans fresh and
+							flavorful for longer.
+						</p>
+						<a
+							href="https://www.baristainstitute.com/blog"
+							target="_blank"
+							class="blog-link"
+						>
+							Read Article →
+						</a>
+					</div>
+				</article>
+			</div>
+		</section>
+
+		<div class="solid-line"></div>
+
+		<!-- SPECIAL OFFERS & SUBSCRIPTIONS -->
+		<section class="menu" id="offers">
+			<h1 class="heading">Special <span>Offers</span></h1>
+			<h3 class="section-description">
+				Go premium and enhance your coffee experience
+			</h3>
+
+			<div class="box-container" id="offersContainer"></div>
+
+			<div class="menu-actions">
+				<!-- 
+				Uncomment this if you want to display show-more/less for special offers section.
+				The first 3 Special Offer cards will goes into hidden
+				(see assets/js/special_offers_loader.js)
+				-->
+				<!-- <div class="showHideWarpper">
+					<button id="offersShowBtn" class="btn-showhide" data-target="offers">
+						Show More >
+					</button>
+				</div> -->
+			</div>
+		</section>
+
+		<section class="contact" id="contact">
+			<h1 class="heading"><span>Come </span>visit us!</h1>
+			<div class="row contact-layout">
+				<div id="map" class="map"></div>
+
+				<div class="contact-info">
+					<h3>Bean Boutique Coffee Shop</h3>
+
+					<p>
+						<i class="fas fa-map-marker-alt"></i>
+						123 Brew Street, Downtown Yangon, Myanmar
+					</p>
+
+					<p>
+						<i class="fas fa-clock"></i>
+						Open Daily: 8:00 AM – 10:00 PM
+					</p>
+
+					<p>
+						<i class="fas fa-phone"></i>
+						+63 917-134-1422
+					</p>
+
+					<p>
+						<i class="fas fa-envelope"></i>
+						beanboutiquecoffee@email.com
+					</p>
+
+					<p class="contact-note">
+						Visit us for fresh coffee, hands-on workshops, and community events.
+					</p>
+				</div>
+			</div>
+		</section>
+
+		<!-- FOOTER SECTION -->
+		<section class="footer">
+			<div class="footer-container">
+				<div class="logo">
+					<h2>Contact Us</h2>
+
+					<i class="fas fa-envelope"></i>
+					<p>bean@email.com</p>
+					<br />
+					<i class="fas fa-phone"></i>
+					<p>+63 917-134-1422</p>
+					<br />
+					<i class="fa-brands fa-instagram"></i>
+					<p>@beanboutique</p>
+					<br />
+				</div>
+				<div class="support">
+					<h2>Support</h2>
+					<br />
+					<a href="#">Customer Service</a>
+					<a href="#">Food Certification</a>
+					<a href="#">Q&A</a>
+				</div>
+				<div class="credit">
+					<hr />
+					<br />
+					<h2>Bean Boutique Coffee Shop © 2026 | All Rights Reserved.</h2>
+					<h2>Designed by <span>Minn Maung Maung</span> | NCC L4DC</h2>
+				</div>
+			</div>
+		</section>
+
+		<!-- JS File Link -->
+		<script src="assets/js/csv_loader.js"></script>
+
+		<script src="assets/js/coffee_loader.js"></script>
+		<script src="assets/js/equipment_loader.js"></script>
+		<script src="assets/js/events_and_workshops_loader.js"></script>
+		<script src="assets/js/special_offers_loader.js"></script>
+
+		<script src="assets/js/script.js"></script>
+		<script src="assets/js/theme.js"></script>
+
+		<script
+			src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD2Hhh_14Uam62GXGaTMcXWhhVkYg0EbDY&callback=initMap"
+			async
+			defer
+		></script>
+	</body>
+</html>
