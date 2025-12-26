@@ -1,0 +1,4 @@
+id,image,title,description,start_date,end_date,start_time,end_time,type
+event-1,assets/images/events_and_workshops/tasting.webp,Coffee Tasting Session,"Explore flavor profiles and tasting techniques guided by our head barista.",2026-01-01,2026-01-01,09:00,12:00,Workshop
+event-2,assets/images/events_and_workshops/brewing.webp,Home Brewing Masterclass,"Learn brewing methods including V60, Aeropress, and French Press.",2026-01-05,2026-01-08,09:00,12:00,Workshop
+event-3,assets/images/events_and_workshops/roaster.webp,Meet the Roaster,"Connect with our coffee roaster and learn about bean sourcing.",2026-02-10,2026-02-10,14:00,16:00,Event
