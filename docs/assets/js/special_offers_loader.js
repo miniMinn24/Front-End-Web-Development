@@ -42,8 +42,11 @@ loadCSV("assets/database/special_offers.csv", (row, index) => {
 			"$" +
 			(current_price - ((100 * discount) / 100) * current_price).toFixed(2);
 
+		const popular_badge =
+			'<span class="offer-badge popular">Popular Choice!</span>';
+
 		box.innerHTML = `
-	${badge}
+	${popular_badge}
 		<div class="offer-image">
 			<img src="${image}" alt="${title}">
 		</div>
