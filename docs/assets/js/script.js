@@ -439,11 +439,11 @@ const welcomeForm = document.getElementById("welcomeForm");
 
 function showWelcomeModalIfFirstVisit() {
 	const hasVisited = localStorage.getItem("beanBoutiqueVisited");
-	//if (!hasVisited) {
-	setTimeout(() => {
-		welcomeModal.style.display = "flex";
-	}, 800); // delay feels more natural
-	//}
+	if (!hasVisited) {
+		setTimeout(() => {
+			welcomeModal.style.display = "flex";
+		}, 800); // delay feels more natural
+	}
 }
 // Mark visitor as seen
 function markVisitor() {
