@@ -4,6 +4,7 @@ LIGHT/DARK TOGGLE + LOGO
 
 const themeToggle = document.getElementById("theme-toggle");
 const logo = document.getElementById("site-logo");
+const welcomeLogo = document.getElementById("welcome-logo");
 
 const LOGO_LIGHT = "assets/images/bean_boutique_light_transparent.svg";
 const LOGO_DARK = "assets/images/bean_boutique_dark_transparent.svg";
@@ -24,6 +25,9 @@ function applyTheme(theme) {
 	// Toggle logo
 	if (logo) {
 		logo.src = theme === "dark" ? LOGO_DARK : LOGO_LIGHT;
+	}
+	if (welcomeLogo) {
+		welcomeLogo.src = theme === "dark" ? LOGO_DARK : LOGO_LIGHT;
 	}
 }
 

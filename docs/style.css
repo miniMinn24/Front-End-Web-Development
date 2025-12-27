@@ -252,6 +252,7 @@ body {
   display: flex;
   flex-direction: column;
   height: 100%;
+  border-radius: 10px;
 }
 
 /* =========================
@@ -723,7 +724,7 @@ body {
 
 }
 
-@media (max-width:802px) {
+@media (max-width:820px) {
   #menu-btn {
     display: inline-block;
   }
@@ -1300,6 +1301,67 @@ body {
   margin: 1rem 0;
 }
 
+/* ===========================
+   FIRST-TIME VISITOR MODAL
+=========================== */
+.welcome-modal {
+  position: relative;
+  text-align: center;
+  max-width: 420px;
+  padding: 3rem;
+}
+
+.welcome-logo {
+  width: 80px;
+  margin-bottom: 1.5rem;
+}
+
+.welcome-modal h2 {
+  font-size: 2.6rem;
+  margin-bottom: 1rem;
+  color: var(--fg);
+}
+
+.welcome-modal .modal-close {
+  position: absolute;
+  top: 1.2rem;
+  right: 1.2rem;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.welcome-text {
+  font-size: 1.6rem;
+  color: var(--fg-text);
+  margin-bottom: 2rem;
+}
+
+#welcomeForm {
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+}
+
+#welcomeForm input {
+  padding: 1.2rem;
+  font-size: 1.5rem;
+  background: var(--bg-fade);
+  color: var(--fg);
+  border-radius: 6px;
+}
+
+.btn-cancel {
+  margin-top: 1.5rem;
+  font-size: 1.4rem;
+  background: transparent;
+  color: var(--fg-muted);
+  cursor: pointer;
+}
+
+.btn-cancel:hover {
+  text-decoration: underline;
+}
+
 /* =================
    PAYMENT MODAL
 ================= */
@@ -1558,6 +1620,7 @@ section {
   background: var(--bg);
   position: relative;
   overflow: hidden;
+  transition: .4s ease;
 }
 
 .menu .product-img {
