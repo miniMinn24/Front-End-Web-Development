@@ -309,6 +309,7 @@ document.addEventListener("click", (e) => {
 	const modal = document.getElementById("productModal");
 	modal.style.display = "flex";
 	document.getElementById("modalImg").src = card.dataset.img;
+	document.getElementById("modalImg").alt = "Image of " + card.dataset.title;
 	document.getElementById("modalTitle").textContent = card.dataset.title;
 	document.getElementById("modalPrice").textContent = card.dataset.price;
 	document.getElementById("modalDescription").textContent =
