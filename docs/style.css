@@ -47,6 +47,7 @@ input[type="search"]::-webkit-search-cancel-button {
 
 body {
   background-color: var(--bg);
+  transition: background-color 0.5s ease, color 0.5s ease;
 }
 
 /* ==================
@@ -54,6 +55,7 @@ body {
 ==================*/
 .header {
   background-color: var(--bg-transparent);
+  transition: background-color 0.5s ease, color 0.5s ease;
   box-shadow: var(--box-shadow);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
@@ -1495,6 +1497,7 @@ section {
    MENU + BOXES
 ================ */
 .menu .box-container {
+  transition: background-color 0.5s ease, color 0.5s ease;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 1rem;
