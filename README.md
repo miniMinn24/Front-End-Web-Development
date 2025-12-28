@@ -8,13 +8,18 @@
 
 # About
 This repository is made to share my code files for my academic unit subject **Front End Web Development** by [**NCC L4DC**](https://www.nccedu.com/qualifications/diplomas/ncc-education-level-4-diploma-in-computing-l4dc/), to let my instructer freely view and mark my academic homeworks, exercises, and assignments.
-### Types of resources included
+### Types of training included
 - Topic exercises
 - Private study tasks
 - Homeworks/projects
-- Final assignment (not coming yet...)
+- Final assignment (Bean Boutique Coffee Shop)
 
 Languages used - **HTML, CSS, and JavaScript**
+Database - **CSV**
 
 > [!NOTE]
 > As this repo is meant for my academic college, no other code push requests will be accepted if you're interested in here for further developement. Unless, contact me if you want to work some projects with me ;)
+
+<div align="center">
+ <h1>FINAL ASSIGNMENT - Bean Boutique Coffee Shop</h1>
+</div>
