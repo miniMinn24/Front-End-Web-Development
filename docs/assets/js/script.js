@@ -135,8 +135,11 @@ function resetSearchResults() {
 	document.querySelectorAll(".product-box").forEach((box) => {
 		box.style.display = "";
 	});
-	const noResults = document.getElementById("noResults");
-	if (noResults) noResults.style.display = "none";
+	const noResultsCoffee = document.getElementById("noResultsCoffee");
+	const noResultsEquipment = document.getElementById("noResultsEquipment");
+	if (noResultsCoffee) noResultsCoffee.style.display = "none";
+	if (noResultsEquipment) noResultsEquipment.style.display = "none";
+
 	suggestionsBox.innerHTML = "";
 }
 
@@ -151,8 +154,12 @@ searchInput.addEventListener("input", () => {
 		if (show) visible++;
 	});
 	// display No Results if could not found any
-	const noResults = document.getElementById("noResults");
-	if (noResults) noResults.style.display = visible ? "none" : "block";
+	const noResultsCoffee = document.getElementById("noResultsCoffee");
+	const noResultsEquipment = document.getElementById("noResultsEquipment");
+	if (noResultsCoffee)
+		noResultsCoffee.style.display = visible ? "none" : "block";
+	if (noResultsEquipment)
+		noResultsEquipment.style.display = visible ? "none" : "block";
 });
 
 // Provides search suggestions
@@ -173,8 +180,6 @@ searchInput.addEventListener("input", () => {
 		item.textContent = title;
 		item.onclick = () => {
 			box.scrollIntoView({ behavior: "smooth", block: "center" });
-			box.classList.add("highlight");
-			setTimeout(() => box.classList.remove("highlight"), 1200);
 			suggestionsBox.innerHTML = "";
 			searchForm.classList.remove("active");
 		};
