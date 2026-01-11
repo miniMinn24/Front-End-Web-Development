@@ -100,7 +100,9 @@
 					id="cart-btn"
 					onclick="redirectCart()"
 					title="View your cart"
-				></div>
+				>
+					<span class="item-count" id="cart-item-count">0</span>
+				</div>
 				<div
 					class="fas fa-bars tooltip"
 					data-tooltip="Page menu"
@@ -161,15 +163,7 @@
 					<img src="assets/images/coffee_beans.jpg" alt="" class="img-fluid" />
 				</div>
 				<div class="content">
-					<h3>Welcome To Bean Boutique Coffee Shop!</h3>
-					<p>
-						"At our coffee shop, coffee is more than a daily routine—it is a
-						craft we take pride in. We offer a comfortable and welcoming space
-						in the heart of the city, where quality, consistency, and care come
-						together in every cup. Our journey is driven by a dedication to
-						sourcing premium coffee beans and preparing them with precision to
-						bring out their best flavors."
-					</p>
+					<h1>Welcome To Bean Boutique Coffee Shop!</h1>
 					<p>
 						"Coffee, to us, is about connection and experience. Our warm and
 						inviting environment is designed for people to slow down, enjoy
@@ -188,9 +182,9 @@
 		<!-- COFFEE MENU SECTION -->
 		<section class="menu" id="menu">
 			<h1 class="heading">Coffee <span>Menu</span></h1>
-			<h3 class="section-description">
+			<h2 class="section-description">
 				Tasty and qualified coffee products for your likings and experience
-			</h3>
+			</h2>
 
 			<!-- Search - No Result Display -->
 			<div id="noResultsCoffee" class="no-results">
@@ -215,9 +209,9 @@
 		<!-- BREWING EQUIPMENT MENU SECTION -->
 		<section class="menu" id="equipment">
 			<h1 class="heading">Brewing <span>Equipment</span></h1>
-			<h3 class="section-description">
+			<h2 class="section-description">
 				Get our handy equipments and make coffee with them
-			</h3>
+			</h2>
 
 			<!-- Search - No Result Display -->
 			<div id="noResultsEquipment" class="no-results">
@@ -248,9 +242,9 @@
 		<!-- EVENTS AND WORKSHOPS SECTION -->
 		<section class="events" id="events">
 			<h1 class="heading">Events & <span>Workshops</span></h1>
-			<h3 class="section-description">
+			<h2 class="section-description">
 				We are motivated to guide and share our latest guides.
-			</h3>
+			</h2>
 
 			<div class="events-container" id="eventsContainer">
 				<!-- Cards injected here (see events_and_workshop_loader.js and events_and_workshop.csv) -->
@@ -268,9 +262,9 @@
 		<!-- BLOGS SECTION -->
 		<section class="blogs" id="blogs">
 			<h1 class="heading">Community <span>Blogs</span></h1>
-			<h3 class="section-description">
+			<h2 class="section-description">
 				Our community engagement on social medias
-			</h3>
+			</h2>
 			<div class="box-container blog-container">
 				<!-- Static Cards (I won't use JS and CSV files for now) -->
 				<article class="blog-card">
@@ -328,9 +322,9 @@
 		<!-- SPECIAL OFFERS & SUBSCRIPTIONS SECTION -->
 		<section class="special-offers" id="special-offers">
 			<h1 class="heading">Special <span>Offers</span></h1>
-			<h3 class="section-description">
+			<h2 class="section-description">
 				Go premium and enhance your coffee experience
-			</h3>
+			</h2>
 
 			<div class="special-offers-container" id="specialOffersContainer"></div>
 
@@ -355,7 +349,7 @@
 				<div id="map" class="map"></div>
 
 				<div class="contact-info">
-					<h3>Bean Boutique Coffee Shop</h3>
+					<h2>Bean Boutique Coffee Shop</h2>
 					<p>
 						<i class="fas fa-map-marker-alt"></i>
 						123 Brew Street, Downtown Yangon, Myanmar

@@ -50,6 +50,41 @@ function cartHasItems() {
 	return cartContent.children.length > 0;
 }
 
+function updateItemCount() {
+	const cartContent = document.querySelector(".cart-content");
+	const cartBoxes = cartContent.querySelectorAll(".cart-box");
+	let totalItems = 0;
+
+	cartBoxes.forEach((cartBox) => {
+		const quantityInput = cartBox.querySelector(".cart-quantity");
+		// String to an integer
+		const quantity = parseInt(quantityInput.value);
+		totalItems += quantity;
+	});
+
+	if (totalItems == 0) {
+		document.querySelector(".item-count").style.display = "none";
+	} else {
+		document.querySelector(".item-count").style.display = "inline-block";
+	}
+	document.querySelector(".item-count").innerText = totalItems;
+}
+
+// Calculate total price
+function updateTotal() {
+	let total = 0;
+	const cartBoxes = document.querySelectorAll(".cart-box");
+	cartBoxes.forEach((box) => {
+		const price = parseFloat(
+			box.querySelector(".cart-price").innerText.replace("$", "")
+		);
+		const qty = box.querySelector(".cart-quantity").value;
+		total += price * qty;
+	});
+	document.querySelector(".total-price").innerText = `$${total.toFixed(2)}`;
+	updateItemCount();
+}
+
 // Add products to cart
 function addProductToCart(productBox) {
 	const title = productBox.dataset.title;
@@ -83,20 +118,6 @@ function addProductToCart(productBox) {
 	`;
 	cartContent.appendChild(cartBox);
 	updateTotal();
-}
-
-// Calculate total price
-function updateTotal() {
-	let total = 0;
-	const cartBoxes = document.querySelectorAll(".cart-box");
-	cartBoxes.forEach((box) => {
-		const price = parseFloat(
-			box.querySelector(".cart-price").innerText.replace("$", "")
-		);
-		const qty = box.querySelector(".cart-quantity").value;
-		total += price * qty;
-	});
-	document.querySelector(".total-price").innerText = `$${total.toFixed(2)}`;
 }
 
 /* ===================================
@@ -167,6 +188,8 @@ const suggestionsBox = document.getElementById("searchSuggestions");
 searchInput.addEventListener("input", () => {
 	const q = searchInput.value.toLowerCase();
 	suggestionsBox.innerHTML = "";
+	document.querySelector(".btn-showhide").style.display = "none";
+
 	if (!q) return;
 	const matches = [];
 	document.querySelectorAll(".product-box").forEach((box) => {
@@ -192,6 +215,7 @@ document.querySelector("#search-btn").addEventListener("click", () => {
 	if (!searchForm.classList.contains("active")) {
 		resetSearchResults();
 	}
+	document.querySelector(".btn-showhide").style.display = "block";
 });
 
 /* ===========================
@@ -276,6 +300,7 @@ orderSuccessModal.addEventListener("click", (e) => {
 function clearCart() {
 	document.querySelector(".cart-content").innerHTML = "";
 	document.querySelector(".total-price").textContent = "$0";
+	updateTotal();
 }
 
 // Cart item Remove/Quantify change
